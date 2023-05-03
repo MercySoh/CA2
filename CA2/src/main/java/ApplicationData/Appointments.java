@@ -10,7 +10,7 @@ import java.util.Objects;
 
 /**
  *
- * @author asus
+ * @author Mercy
  */
 public class Appointments {
      private String firstName;
