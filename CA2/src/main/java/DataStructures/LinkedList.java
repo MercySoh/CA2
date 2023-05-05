@@ -4,15 +4,22 @@ import ApplicationData.Appointments;
 import java.lang.reflect.Array;
 
 /**
+ * A Linked list class include all standard components of a LinkedList structure that hold appointments. 
  *
  * @author Mercy Soh Xi En
  */
 public class LinkedList {
 
+    /**
+     * Set up first and last node and size of linked list
+     */
     protected Node first;
     protected Node last;
     protected int size;
 
+    /**
+     * A parameterized constructor of Linked list
+     */
     public LinkedList() {
         first = null;
         last = null;
@@ -171,11 +178,22 @@ public class LinkedList {
         return first == null;
     }
 
+    /**
+     * A static class of Node to set up Node
+     * 
+     * An Appointments call data to store appointments data
+     * A Node call next to track next node
+     */
     protected static class Node {
 
         protected Appointments data;
         protected Node next;
 
+        /** 
+         * A public class Node
+         * 
+         * @param value of appointment
+         */
         public Node(Appointments value) {
             this.data = value;
             this.next = null;
