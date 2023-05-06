@@ -9,7 +9,7 @@ import java.util.NoSuchElementException;
 
 /**
  * A Priority queue class include all standard components of a Priority Queue
-structure and it is extends of Linked list class that hold appointments.
+ * structure and it is extends of Linked list class that hold appointments.
  *
  * @author Mercy
  */
@@ -31,15 +31,25 @@ public class PriorityQueue extends LinkedList {
             last = newNode;
             size++;
             return true;
-        } else {
-            for (int i = 0; i < size; i++) {
-            }
+        } else if(value.compareTo(newNode.data)) {
             last.next = newNode;
             last = newNode;
-            size++;
+        }else{
+            for (int i = 0; i < size; i++) {
 
-            return true;
+                Node current = first.next;
+                Node previous = first;
+
+                while (current.data.compareTo(newNode.data)) {
+                    previous = current;
+                    current = current.next;
+                }
+                previous.next = newNode;
+                newNode.next = current;
+            }    
         }
+        size++;
+        return true;
     }
 
     /**
@@ -58,7 +68,8 @@ public class PriorityQueue extends LinkedList {
     /**
      * Peek first appointment from the Queue.
      *
-     * @return first appointment when the Queue not empty and return null when queue is empty
+     * @return first appointment when the Queue not empty and return null when
+     * queue is empty
      */
     public Appointments peek() {
         if (isEmpty() == true) {
@@ -86,7 +97,8 @@ public class PriorityQueue extends LinkedList {
     /**
      * Poll first appointment from the Queue.
      *
-     * @return first appointment when removed and return null when queue is empty
+     * @return first appointment when removed and return null when queue is
+     * empty
      */
     public Appointments poll() {
         if (isEmpty() == true) {
@@ -97,4 +109,27 @@ public class PriorityQueue extends LinkedList {
         size--;
         return original;
     }
+
+    /**
+     * No indexOf method in priority queue so need to throw exception
+     * 
+     * @param value of appointments
+     * @throws NoSuchElementException when indexOf method use in priority queue
+     */
+    @Override
+    public int indexOf(Appointments value) {
+        throw new NoSuchElementException();
+    }
+
+      /**
+     * No get method in priority queue so need to throw exception
+     * 
+     * @param value of appointments
+     * @throws NoSuchElementException when get method use in priority queue
+     */
+    @Override
+    public Appointments get(int pos) {
+        throw new NoSuchElementException();
+    }
+    
 }
