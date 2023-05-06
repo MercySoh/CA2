@@ -1,7 +1,5 @@
 package DataStructures;
 
-import ApplicationData.Patient;
-
 /**
  * The HashMap class contains a hash table that stores patient objects, this is
  * based on first name, last name and date of birth
@@ -36,7 +34,7 @@ public class HashMap {
         return hash;
     }
 
-    public String put(String key, String value) throws SlotOccupiedException  {
+    public String put(String key, String value) throws SlotOccupiedException {
         if (key == null || value == null) {
             throw new IllegalArgumentException("Values cannot be null");
         }
