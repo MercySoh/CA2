@@ -39,7 +39,7 @@ public class Patients {
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
         this.dateJoinedPractice = dateJoinedPractice;
-        this.appointments = new LinkedList<Appointments>();
+        this.appointments = new LinkedList<>();
     }
 
     /**
@@ -99,7 +99,7 @@ public class Patients {
 
     /**
      * Gets the date the patient joined the practice
-     * 
+     *
      * @return The date the patient joined the practice
      */
     public LocalDate getDateJoinedPractice() {
@@ -107,32 +107,36 @@ public class Patients {
     }
 
     /**
+     * Sets the date the patient joined the practice
      *
-     * @param dateJoinedPractice
+     * @param dateJoinedPractice the date the patient joined the practice
      */
     public void setDateJoinedPractice(LocalDate dateJoinedPractice) {
         this.dateJoinedPractice = dateJoinedPractice;
     }
 
     /**
+     * Gets the patients appointments
      *
-     * @return
+     * @return the patients appointments
      */
     public LinkedList<Appointments> getAppointments() {
         return appointments;
     }
 
     /**
+     * Sets the patients appointments
      *
-     * @return
+     * @param appointments the patients appointments
      */
     public void setAppointments(LinkedList<Appointments> appointments) {
         this.appointments = appointments;
     }
 
     /**
+     * The hash code for the patients first name, last name and date of birth
      *
-     * @return
+     * @return hash code
      */
     @Override
     public int hashCode() {
@@ -144,8 +148,9 @@ public class Patients {
     }
 
     /**
+     * The equals for the patients first name, last name and date of birth
      *
-     * @return
+     * @return true when obj is equal, else returns false
      */
     @Override
     public boolean equals(Object obj) {
