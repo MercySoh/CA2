@@ -17,6 +17,15 @@ public class HashMap {
     public HashMap(Patient[] data) {
         data = new Patient[DEFAULT_CAPACITY];
     }
-    
-    
+
+    public HashMap(int capacity) {
+        if (capacity <= 0) {
+            throw new IllegalArgumentException("Map capacity Invalid - Cannot be lower than 1");
+        }
+        data = new Patient[capacity];
+    }
+
+    public int size() {
+        return size;
+    }
 }
