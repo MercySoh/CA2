@@ -36,7 +36,7 @@ public class HashMap {
         return hash;
     }
 
-    public String put(String key, String value) {
+    public String put(String key, String value) throws SlotOccupiedException  {
         if (key == null || value == null) {
             throw new IllegalArgumentException("Values cannot be null");
         }
@@ -73,7 +73,7 @@ public class HashMap {
         }
     }
 
-    private Patient[] growMap() {
+    private Patient[] growMap() throws MapFullException {
         Patient[] newMap = new Patient[data.length * 2];
         for (int i = 0; i < data.length; i++) {
             String key = data[i].key;
@@ -86,5 +86,30 @@ public class HashMap {
             newMap[slot] = data[i];
         }
         return newMap;
+    }
+
+    private static class Patient {
+
+        private final String key;
+        private String value;
+
+        public Patient(String key, String value) {
+            this.key = key;
+            this.value = value;
+        }
+
+        public String getKey() {
+            return key;
+        }
+
+        public String getValue() {
+            return value;
+        }
+
+        public String updateValue(String newValue) {
+            String oldValue = value;
+            this.value = newValue;
+            return oldValue;
+        }
     }
 }
