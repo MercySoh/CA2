@@ -1,8 +1,6 @@
 package DataStructures;
 
 import ApplicationData.Patient;
-import java.time.LocalDate;
-import java.util.LinkedList;
 
 /**
  * The HashMap class contains a hash table that stores patient objects, this is
@@ -11,5 +9,14 @@ import java.util.LinkedList;
  * @author evanm
  */
 public class HashMap {
+
+    private static final int DEFAULT_CAPACITY = 103;
+    private Patient[] data;
+    private int size;
+
+    public HashMap(Patient[] data) {
+        data = new Patient[DEFAULT_CAPACITY];
+    }
+    
     
 }
