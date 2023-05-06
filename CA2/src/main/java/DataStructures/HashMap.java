@@ -12,24 +12,6 @@ import java.util.LinkedList;
  */
 public class HashMap {
 
-    //The capacity of the hashMap
-    private int capacity;
-
-    //The array of linked lists to store patients
-    private LinkedList<Patient>[] lists;
-
-    /**
-     * The constructor to create a Patient hash map with the capacity specified
-     *
-     * @param capacity the number of lists in the hash table
-     */
-    public HashMap(int capacity) {
-        this.capacity = capacity;
-        this.lists = new LinkedList[capacity];
-    }
-
-    public void put(Patient patient) {
-
-    }
+    
 
 }
