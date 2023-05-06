@@ -54,7 +54,7 @@ public class HashMap {
             size++;
             return null;
         } else {
-            if(data[slot].key.equals(key)) {
+            if (data[slot].key.equals(key)) {
                 String oldValue = data[slot].updateValue(value);
                 return oldValue;
             } else {
@@ -63,8 +63,28 @@ public class HashMap {
         }
 
     }
-    
+
     public String get(String key) {
-        
+        int slot = hash(key);
+        if (data[slot] != null) {
+            return data[slot].value;
+        } else {
+            return null;
+        }
+    }
+
+    private Patient[] growMap() {
+        Patient[] newMap = new Patient[data.length * 2];
+        for (int i = 0; i < data.length; i++) {
+            String key = data[i].key;
+            int slot = key.hashCode();
+            slot = Math.abs(slot);
+            slot = slot % newMap.length;
+            if (newMap[slot] != null) {
+                throw new MapFullException("Cannot complete resize operation. Continued action would result in data loss.");
+            }
+            newMap[slot] = data[i];
+        }
+        return newMap;
     }
 }
