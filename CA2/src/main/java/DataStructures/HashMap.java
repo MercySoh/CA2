@@ -11,7 +11,5 @@ import java.util.LinkedList;
  * @author evanm
  */
 public class HashMap {
-
     
-
 }
