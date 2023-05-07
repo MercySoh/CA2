@@ -72,27 +72,43 @@ public class HashMap {
      * @throws IllegalArgumentException if either of the parameters are null
      */
     public String put(String key, String value) throws SlotOccupiedException {
+        //Checking if key or value is null
         if (key == null || value == null) {
+            //Throwing error message
             throw new IllegalArgumentException("Values cannot be null");
         }
+        //Checking if map is big enough
         if (size == data.length) {
+            //Growing the map if needed
             data = growMap();
         }
 
+        //Calculating slot for the key
         int slot = hash(key);
+        //System output
         System.out.println("Size of map: " + size + ", capacity: " + data.length);
+        //System output
         System.out.println("Slot calculated: " + slot);
 
+        //If the slot is null
         if (data[slot] == null) {
+            //Creating newPatient
             Patient newPatient = new Patient(key, value);
+            //Insert into newPatient
             data[slot] = newPatient;
+            //Increasing size
             size++;
+            //Returning null
             return null;
-        } else {
+        } else { //Otherwise
+            //If the key is already in the current slot
             if (data[slot].key.equals(key)) {
+                //Update the value
                 String oldValue = data[slot].updateValue(value);
+                //Return the old value
                 return oldValue;
-            } else {
+            } else { //Otherwise
+                //Throwing error message
                 throw new SlotOccupiedException("Provided key maps to occupied slot in map. ");
             }
         }
