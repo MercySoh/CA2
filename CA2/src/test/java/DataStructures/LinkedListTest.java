@@ -34,7 +34,7 @@ public class LinkedListTest {
     @Test
     public void testSize_PopulatedList() {
         LinkedList instance = new LinkedList();
-      instance.add(new Appointments("Jolin", "Smith", "1998-10-10", "Light Fever", "2023-04-14", 4, "Jennifer White"));
+        instance.add(new Appointments("Jolin", "Smith", "1998-10-10", "Light Fever", "2023-04-14", 4, "Jennifer White"));
         instance.add(new Appointments("Ason", "Kelly", "1988-01-14", "Feel shortness of breath", "2023-04-29", 3, "Winson Murphy"));
         instance.add(new Appointments("Brian", "Carroll", "1994-05-21", "Lightheadedness", "2023-05-02", 1, "Jennifer White"));
         int expResult = 3;
@@ -88,7 +88,8 @@ public class LinkedListTest {
     }
 
     /**
-     * Test invalid input - breaking upper bound(greater than size) of list of get method.
+     * Test invalid input - breaking upper bound(greater than size) of list of
+     * get method.
      */
     @Test
     public void testGet_BreakingUpperBound_GreaterThanSize() {
@@ -101,8 +102,8 @@ public class LinkedListTest {
             instance.get(4);
         });
     }
-    
-     /**
+
+    /**
      * Test invalid input - equal to size of get method.
      */
     @Test
@@ -111,58 +112,93 @@ public class LinkedListTest {
         instance.add(new Appointments());
         instance.add(new Appointments());
         instance.add(new Appointments());
-        
+
         assertThrows(IndexOutOfBoundsException.class, () -> {
             instance.get(3);
         });
     }
-  Appointments appointment = new Appointments("Kenny", "Ryan", "1992-03-29", "Chest pain", "2023-05-02", 2, "Winson Murphy");
-     /**
+
+    /**
      * Test appointments in the list of indexOf method.
      */
     @Test
     public void testIndexOf_AppointmentInList() {
         Appointments appt = new Appointments("Brian", "Carroll", "1994-05-21", "Lightheadedness", "2023-05-02", 1, "Jennifer White");
-        
+
         LinkedList instance = new LinkedList();
         instance.add(new Appointments("Jolin", "Smith", "1998-10-10", "Light Fever", "2023-04-14", 4, "Jennifer White"));
         instance.add(new Appointments("Ason", "Kelly", "1988-01-14", "Feel shortness of breath", "2023-04-29", 3, "Winson Murphy"));
         instance.add(new Appointments("Brian", "Carroll", "1994-05-21", "Lightheadedness", "2023-05-02", 1, "Jennifer White"));
-        
+
         int expResult = 2;
         int result = instance.indexOf(appt);
         assertEquals(expResult, result);
     }
-   
-   /**
+
+    /**
      * Test appointment not in the list of indexOf method.
      */
     @Test
-    public void testIndexOf_AppointmentNotInList(){
-       Appointments appt = new Appointments();
-        
-       LinkedList instance = new LinkedList();
+    public void testIndexOf_AppointmentNotInList() {
+        Appointments appt = new Appointments();
+
+        LinkedList instance = new LinkedList();
         instance.add(new Appointments("Jolin", "Smith", "1998-10-10", "Light Fever", "2023-04-14", 4, "Jennifer White"));
         instance.add(new Appointments("Ason", "Kelly", "1988-01-14", "Feel shortness of breath", "2023-04-29", 3, "Winson Murphy"));
         instance.add(new Appointments("Brian", "Carroll", "1994-05-21", "Lightheadedness", "2023-05-02", 1, "Jennifer White"));
-        
+
         int expResult = -1;
         int result = instance.indexOf(appt);
         assertEquals(expResult, result);
-    }    
+    }
+
     /**
-     * Test of add method, of class LinkedList.
+     * Test add one appointment to list of add method.
      */
     @Test
-    public void testAdd() {
-        System.out.println("add");
-        Appointments value = null;
+    public void testAdd_Appointment() {
+        Appointments appt = new Appointments("Kenny", "Ryan", "1992-03-29", "Chest pain", "2023-05-02", 2, "Winson Murphy");
         LinkedList instance = new LinkedList();
-        boolean expResult = false;
-        boolean result = instance.add(value);
+
+        boolean expResult = true;
+        boolean result = instance.add(appt);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
+        int expSize = 1;
+        int resultSize = instance.size();
+        assertEquals(expSize, resultSize);
+
+        Appointments resultappt = instance.get(0);
+        assertEquals(appt, resultappt);
+
+        resultappt = instance.tail();
+        assertEquals(appt, resultappt);
+    }
+
+    /**
+     * Test add 2 elements of appointments to list of add method.
+     */
+    @Test
+    public void testAdd_AddingTwoElements_Appointments() {
+        LinkedList instance = new LinkedList();
+
+        Appointments appt1 = new Appointments("Danny", "Dunne", "1990-03-11", "Knee pain", "2023-04-02", 4, "Winson Murphy");
+        instance.add(appt1);
+        boolean expResult = true;
+
+        Appointments appt2 = new Appointments("Hannah", "Kelly", "2000-11-22", "Common cold", "2023-03-28", 5, "Winson Murphy");
+        boolean result = instance.add(appt2);
+        assertEquals(expResult, result);
+
+        Appointments elem2 = instance.get(1);
+        assertEquals(appt2, elem2);
+
+        int expSize = 2;
+        int resultSize = instance.size();
+        assertEquals(expSize, resultSize);
+
+        Appointments resultappt = instance.tail();
+        assertEquals(appt2, resultappt);
     }
 
     /**
@@ -182,32 +218,73 @@ public class LinkedListTest {
     }
 
     /**
-     * Test of remove method, of class LinkedList.
+     * Test remove one instance in list of remove method.
      */
     @Test
-    public void testRemove() {
-        System.out.println("remove");
-        Appointments value = null;
+    public void testRemove_RemovingOneInstance() {
+        Appointments appt = new Appointments("Jolin", "Smith", "1998-10-10", "Light Fever", "2023-04-14", 4, "Jennifer White");
+       
         LinkedList instance = new LinkedList();
-        boolean expResult = false;
-        boolean result = instance.remove(value);
+        instance.add(new Appointments("Jolin", "Smith", "1998-10-10", "Light Fever", "2023-04-14", 4, "Jennifer White"));
+        instance.add(new Appointments("Ason", "Kelly", "1988-01-14", "Feel shortness of breath", "2023-04-29", 3, "Winson Murphy"));
+        instance.add(new Appointments("Brian", "Carroll", "1994-05-21", "Lightheadedness", "2023-05-02", 1, "Jennifer White"));
+
+        boolean expResult = true;
+        boolean result = instance.remove(appt);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+       
+        int expSize = 2;
+        assertEquals(expSize, instance.size());
     }
 
     /**
-     * Test of isEmpty method, of class LinkedList.
+     * Test remove single instance where multiple exist in list of remove method.
+     */
+    @Test
+    public void testRemove_RemovingSingleInstanceWhereMultipleExist() {
+       Appointments appt = new Appointments("Jolin", "Smith", "1998-10-10", "Light Fever", "2023-04-14", 4, "Jennifer White");
+        LinkedList instance = new LinkedList();
+        
+        instance.add(new Appointments("Jolin", "Smith", "1998-10-10", "Light Fever", "2023-04-14", 4, "Jennifer White"));
+        instance.add(new Appointments("Ason", "Kelly", "1988-01-14", "Feel shortness of breath", "2023-04-29", 3, "Winson Murphy"));
+        instance.add(new Appointments("Brian", "Carroll", "1994-05-21", "Lightheadedness", "2023-05-02", 1, "Jennifer White"));
+        instance.add(new Appointments("Jolin", "Smith", "1998-10-10", "Light Fever", "2023-04-14", 4, "Jennifer White"));
+        
+        boolean expResult = true;
+        boolean result = instance.remove(appt);
+        assertEquals(expResult, result);
+        
+        int expSize = 3;
+        assertEquals(expSize, instance.size());
+        int expPos = 2;
+        assertEquals(expPos, instance.indexOf(appt));
+    }
+
+    /**
+     * Test empty list of isEmpty method.
      */
     @Test
     public void testIsEmpty() {
-        System.out.println("isEmpty");
+        
         LinkedList instance = new LinkedList();
+        boolean expResult = true;
+        boolean result = instance.isEmpty();
+        assertEquals(expResult, result);
+    }
+    
+    /**
+     * Test populated list of isEmpty method.
+     */
+    @Test
+    public void testIsEmpty_PopulatedList() {
+        LinkedList instance = new LinkedList();
+        instance.add(new Appointments("Jolin", "Smith", "1998-10-10", "Light Fever", "2023-04-14", 4, "Jennifer White"));
+        instance.add(new Appointments("Ason", "Kelly", "1988-01-14", "Feel shortness of breath", "2023-04-29", 3, "Winson Murphy"));
+        instance.add(new Appointments("Brian", "Carroll", "1994-05-21", "Lightheadedness", "2023-05-02", 1, "Jennifer White"));
+        
         boolean expResult = false;
         boolean result = instance.isEmpty();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
 }
