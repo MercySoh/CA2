@@ -34,8 +34,8 @@ public class LinkedListTest {
     @Test
     public void testSize_PopulatedList() {
         LinkedList instance = new LinkedList();
-        instance.add(new Appointments("Jolin", "Smith", "1998-10-10", "Fever", "2023-04-14", 3, "Jennifer White"));
-        instance.add(new Appointments("Ason", "Kelly", "1988-01-14", "Feel shortness of breath", "2023-04-29", 4, "Winson Murphy"));
+      instance.add(new Appointments("Jolin", "Smith", "1998-10-10", "Light Fever", "2023-04-14", 4, "Jennifer White"));
+        instance.add(new Appointments("Ason", "Kelly", "1988-01-14", "Feel shortness of breath", "2023-04-29", 3, "Winson Murphy"));
         instance.add(new Appointments("Brian", "Carroll", "1994-05-21", "Lightheadedness", "2023-05-02", 1, "Jennifer White"));
         int expResult = 3;
         int result = instance.size();
@@ -63,8 +63,8 @@ public class LinkedListTest {
     @Test
     public void testGet_ValidInput_EndOfList() {
         LinkedList instance = new LinkedList();
-        instance.add(new Appointments("Jolin", "Smith", "1998-10-10", "Fever", "2023-04-14", 3, "Jennifer White"));
-        instance.add(new Appointments("Ason", "Kelly", "1988-01-14", "Feel shortness of breath", "2023-04-29", 4, "Winson Murphy"));
+        instance.add(new Appointments("Jolin", "Smith", "1998-10-10", "Light Fever", "2023-04-14", 4, "Jennifer White"));
+        instance.add(new Appointments("Ason", "Kelly", "1988-01-14", "Feel shortness of breath", "2023-04-29", 3, "Winson Murphy"));
         instance.add(new Appointments("Brian", "Carroll", "1994-05-21", "Lightheadedness", "2023-05-02", 1, "Jennifer White"));
 
         Appointments expResult = new Appointments("Brian", "Carroll", "1994-05-21", "Lightheadedness", "2023-05-02", 1, "Jennifer White");
@@ -116,22 +116,40 @@ public class LinkedListTest {
             instance.get(3);
         });
     }
-
-    /**
-     * Test of indexOf method, of class LinkedList.
+  Appointments appointment = new Appointments("Kenny", "Ryan", "1992-03-29", "Chest pain", "2023-05-02", 2, "Winson Murphy");
+     /**
+     * Test appointments in the list of indexOf method.
      */
     @Test
-    public void testIndexOf() {
-        System.out.println("indexOf");
-        Appointments value = null;
+    public void testIndexOf_AppointmentInList() {
+        Appointments appt = new Appointments("Brian", "Carroll", "1994-05-21", "Lightheadedness", "2023-05-02", 1, "Jennifer White");
+        
         LinkedList instance = new LinkedList();
-        int expResult = 0;
-        int result = instance.indexOf(value);
+        instance.add(new Appointments("Jolin", "Smith", "1998-10-10", "Light Fever", "2023-04-14", 4, "Jennifer White"));
+        instance.add(new Appointments("Ason", "Kelly", "1988-01-14", "Feel shortness of breath", "2023-04-29", 3, "Winson Murphy"));
+        instance.add(new Appointments("Brian", "Carroll", "1994-05-21", "Lightheadedness", "2023-05-02", 1, "Jennifer White"));
+        
+        int expResult = 2;
+        int result = instance.indexOf(appt);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
-
+   
+   /**
+     * Test appointment not in the list of indexOf method.
+     */
+    @Test
+    public void testIndexOf_AppointmentNotInList(){
+       Appointments appt = new Appointments();
+        
+       LinkedList instance = new LinkedList();
+        instance.add(new Appointments("Jolin", "Smith", "1998-10-10", "Light Fever", "2023-04-14", 4, "Jennifer White"));
+        instance.add(new Appointments("Ason", "Kelly", "1988-01-14", "Feel shortness of breath", "2023-04-29", 3, "Winson Murphy"));
+        instance.add(new Appointments("Brian", "Carroll", "1994-05-21", "Lightheadedness", "2023-05-02", 1, "Jennifer White"));
+        
+        int expResult = -1;
+        int result = instance.indexOf(appt);
+        assertEquals(expResult, result);
+    }    
     /**
      * Test of add method, of class LinkedList.
      */
