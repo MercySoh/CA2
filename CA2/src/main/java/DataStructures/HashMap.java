@@ -122,17 +122,27 @@ public class HashMap {
      * @throws MapFullException if the array cannot be resized
      */
     private Patient[] growMap() throws MapFullException {
+        //Creating a new map double the size of the old map
         Patient[] newMap = new Patient[data.length * 2];
+        //for each patient in the old map
         for (int i = 0; i < data.length; i++) {
+            //Getting the key of the current patient
             String key = data[i].key;
+            //Calculates hashCode of the key
             int slot = key.hashCode();
+            //Calculates absolute value of the slot
             slot = Math.abs(slot);
+            //Calculates the slot to store the key and value
             slot = slot % newMap.length;
+            //If the slot in the newMap is not null
             if (newMap[slot] != null) {
+                //Throwing error message
                 throw new MapFullException("Cannot complete resize operation. Continued action would result in data loss.");
             }
+            //Assigning the value to the empty slot in the newMap
             newMap[slot] = data[i];
         }
+        //Returning the newMap
         return newMap;
     }
 
