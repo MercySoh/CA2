@@ -201,21 +201,106 @@ public class LinkedListTest {
         assertEquals(appt2, resultappt);
     }
 
-    /**
-     * Test of set method, of class LinkedList.
+      /**
+     * Test set valid value and valid position with set method.
      */
     @Test
-    public void testSet() {
-        System.out.println("set");
-        Appointments value = null;
-        int pos = 0;
+     public void testSetTwoParameters_validPosition() {
+        Appointments appt1 = new Appointments("Danny", "Dunne", "1990-03-11", "Knee pain", "2023-04-02", 4, "Winson Murphy");
+        int pos = 2;
         LinkedList instance = new LinkedList();
-        Appointments expResult = null;
-        Appointments result = instance.set(value, pos);
+        
+        instance.add(new Appointments("Jolin", "Smith", "1998-10-10", "Light Fever", "2023-04-14", 4, "Jennifer White"));
+        instance.add(new Appointments("Ason", "Kelly", "1988-01-14", "Feel shortness of breath", "2023-04-29", 3, "Winson Murphy"));
+        instance.add(new Appointments("Brian", "Carroll", "1994-05-21", "Lightheadedness", "2023-05-02", 1, "Jennifer White"));
+
+        Appointments expResult = new Appointments("Brian", "Carroll", "1994-05-21", "Lightheadedness", "2023-05-02", 1, "Jennifer White");
+        Appointments result = instance.set(appt1, pos);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        int expSize = 4;
+        int resultSize = instance.size();
+        assertEquals(expSize, resultSize);
     }
+     
+     /**
+     * Test set valid value and valid position(set position to middle) with set method.
+     */
+    @Test
+     public void testSetTwoParameters_validPosition_middle() {
+        Appointments appt1 = new Appointments("Danny", "Dunne", "1990-03-11", "Knee pain", "2023-04-02", 4, "Winson Murphy");
+        int pos = 1;
+        
+        LinkedList instance = new LinkedList();
+        
+        instance.add(new Appointments("Jolin", "Smith", "1998-10-10", "Light Fever", "2023-04-14", 4, "Jennifer White"));
+        instance.add(new Appointments("Ason", "Kelly", "1988-01-14", "Feel shortness of breath", "2023-04-29", 3, "Winson Murphy"));
+        instance.add(new Appointments("Brian", "Carroll", "1994-05-21", "Lightheadedness", "2023-05-02", 1, "Jennifer White"));
+        
+        Appointments expResult = new Appointments("Ason", "Kelly", "1988-01-14", "Feel shortness of breath", "2023-04-29", 3, "Winson Murphy");
+        Appointments result = instance.set(appt1, pos);
+        assertEquals(expResult, result);
+        
+        int expSize = 4;
+        int resultSize = instance.size();
+        assertEquals(expSize, resultSize);
+       
+    }
+     
+     /**
+     * Test set valid value and invalid position(position less than 0) with set method.
+     */
+    @Test
+    public void testSetTwoParameters_BreakingLowerBound() {
+        Appointments appt1 = new Appointments("Danny", "Dunne", "1990-03-11", "Knee pain", "2023-04-02", 4, "Winson Murphy");
+        int pos = -1;
+        LinkedList instance = new LinkedList();
+        
+        instance.add(new Appointments("Jolin", "Smith", "1998-10-10", "Light Fever", "2023-04-14", 4, "Jennifer White"));
+        instance.add(new Appointments("Ason", "Kelly", "1988-01-14", "Feel shortness of breath", "2023-04-29", 3, "Winson Murphy"));
+        instance.add(new Appointments("Brian", "Carroll", "1994-05-21", "Lightheadedness", "2023-05-02", 1, "Jennifer White"));
+
+        assertThrows(IndexOutOfBoundsException.class, () -> {
+            instance.set(appt1, pos);
+        });
+    }
+    
+    /**
+     * Test set valid value and invalid position(position greater than size of list) with set method.
+     */
+    @Test
+    public void testSetTwoParameters_BreakingUpperBound_GreaterThanSize() {
+         Appointments appt1 = new Appointments("Danny", "Dunne", "1990-03-11", "Knee pain", "2023-04-02", 4, "Winson Murphy");
+        int pos = 8;
+        LinkedList instance = new LinkedList();
+        
+        instance.add(new Appointments("Jolin", "Smith", "1998-10-10", "Light Fever", "2023-04-14", 4, "Jennifer White"));
+        instance.add(new Appointments("Ason", "Kelly", "1988-01-14", "Feel shortness of breath", "2023-04-29", 3, "Winson Murphy"));
+        instance.add(new Appointments("Brian", "Carroll", "1994-05-21", "Lightheadedness", "2023-05-02", 1, "Jennifer White"));
+
+        assertThrows(IndexOutOfBoundsException.class, () -> {
+            instance.set(appt1, pos);
+        });
+    }
+
+    /**
+     * Test set valid value and invalid position(position equal to size of list) with set method.
+     */
+    @Test
+    public void testSetTwoParameters_BreakingUpperBound_EqualToSize() {
+         Appointments appt1 = new Appointments("Danny", "Dunne", "1990-03-11", "Knee pain", "2023-04-02", 4, "Winson Murphy");
+        int pos = 3;
+        LinkedList instance = new LinkedList();
+        
+        instance.add(new Appointments("Jolin", "Smith", "1998-10-10", "Light Fever", "2023-04-14", 4, "Jennifer White"));
+        instance.add(new Appointments("Ason", "Kelly", "1988-01-14", "Feel shortness of breath", "2023-04-29", 3, "Winson Murphy"));
+        instance.add(new Appointments("Brian", "Carroll", "1994-05-21", "Lightheadedness", "2023-05-02", 1, "Jennifer White"));
+
+        assertThrows(IndexOutOfBoundsException.class, () -> {
+            instance.set(appt1, pos);
+        });
+    }
+    
 
     /**
      * Test remove one instance in list of remove method.
